@@ -1,172 +1,121 @@
-# Laravel Framework 5.1  Bootstrap 3 Starter Site
+Project Documentation
 
-## Starter Site based on on Laravel 5.1 and Boostrap 3
-* [Features](#feature1)
-* [Requirements](#feature2)
-* [How to install](#feature3)
-* [Application Structure](#feature4)
-* [Troubleshooting](#feature5)
-* [License](#feature6)
-* [Additional information](#feature7)
-* [How Starter site is look like](#feature8)
-* [Advanced Alternatives](#feature9)
 
-<a name="feature1"></a>
-## Starter Site Features:
-* Laravel 5.1.x
-* Twitter Bootstrap 3.x
-* Back-end
-	* Automatic install and setup website.
-	* User management.
-	* Manage languages.
-	* Manage photos and photo albums.
-	* Manage article and article categories.
-    * DataTables dynamic table sorting and filtering.
-    * Colorbox jQuery modal popup.
-    * Add Summernote WYSIWYG in textareas.
-* Front-end
-	* User login, registration
-	* View Photos,Articles, Languages and Users
-	* soon will be more...
-* Packages included:
-	* Datatables Bundle
+A made-to-order blog (news) website using Laravel and MongoDB as the backend. Backend should ease up the current process/ workflow and minimize the steps and manual intervention involved. 
 
------
-<a name="feature2"></a>
-##Requirements
+Backend Features such as:
 
-	PHP >= 5.5.9
-	OpenSSL PHP Extension
-	Mbstring PHP Extension
-	Tokenizer PHP Extension
-	SQL server(for example MySQL)
-	Composer
-	Node JS
 
------
-<a name="feature3"></a>
-##How to install:
-* [Step 1: Get the code](#step1)
-* [Step 2: Use Composer to install dependencies](#step2)
-* [Step 3: Create database](#step3)
-* [Step 4: Install](#step4)
-* [Step 5: Start Page](#step5)
+User management: Create, edit, disable different user types (available to admin only)
+Writer: Can manage articles written by this very user only (can not access other’s work from backend).+ SEO
+SEO: Can manage SEO section for articles written by all users.
+Editor and SEO: Can manage all articles published by all users as well as the SEO.
+Admin: Can do everything including what an Editor and SEO can do  along with other settings, user management, configurations, email subscribers etc.
 
------
-<a name="step1"></a>
-### Step 1: Get the code - Download the repository
+Add user: 
+(Mandatory fields)
+Full Name: Text field (100 characters) 
+Email id: email validation 
+Access rights: Radio buttons (options: Writer, SEO, Editor and SEO, Admin)
+User will be registered using google login? As mentioned below
 
-    https://github.com/mrakodol/Laravel-5-Bootstrap-3-Starter-Site/archive/master.zip
+We will simply enter a google ID from admin panel for every admin user we create. On the Admin-Login page we will only have Login using Google option. For example, check this page:
+http://jatinder.aphroecs.com/aphro_crm/admin/users/login
 
-Extract it in www(or htdocs if you using XAMPP) folder and put it for example in laravel5startersite folder.
+IF the google-logged in user id is available in Admin - we allow the user access. Otherwise send email to admin that another google user tried login to the system. 
 
------
-<a name="step2"></a>
-### Step 2: Use Composer to install dependencies
 
-Laravel utilizes [Composer](http://getcomposer.org/) to manage its dependencies. First, download a copy of the composer.phar.
-Once you have the PHAR archive, you can either keep it in your local project directory or move to
-usr/local/bin to use it globally on your system.
-On Windows, you can use the Composer [Windows installer](https://getcomposer.org/Composer-Setup.exe).
+(non mandatory fields)
+Image: Browse (upto 10 mb - image stores into AWS S3 bucket)
+About text: Editor
+Facebook link:
+Twitter link:
+Linkedin link: 
+Others1: 
+Others 2:
+Others 3:
 
-Then run:
 
-    composer dump-autoload
-    composer install --no-scripts
+	
 
------
-<a name="step3"></a>
-### Step 3: Create database
+Social media settings: links for all social media networks can be managed from here (available to Admin only)
+Facebook
+LinkedIn
+Twitter
+Instagram
+Youtube
 
-If you finished first three steps, now you can create database on your database server(MySQL). You must create database
-with utf-8 collation(uft8_general_ci), to install and application work perfectly.
-After that, copy .env.example and rename it as .env and put connection and change default database connection name, only database connection, put name database, database username and password.
+Ads management: Ads for home, category page and article pages can be managed (available to Admin only)
+Please explain this features in details like fields, validation, payment info(if any there), visibility etc.
+These will simple textarea fields. For example home page has 5 ads displayed. So we will have option for 5 text areas in admin for home page - admin can enter the ad script/ code in the text area. Front end will pull this information. Nothing else to be done. 
 
------
-<a name="step4"></a>
-### Step 4: Install
 
-Firstable need to uncomment this line "extension=php_fileinfo.dll" in php.ini file.
+Configuration management (available to Admin only)
+API details for CopyScrap website 
+Enable/ disable mandatory CopyScrap check
+Percentage of content that needs to be original to be able to save in DB
+Google Analytics Code
+Google webmasters code
 
-This project makes use of Bower and Laravel Elixir. Before triggering Elixir, you must first ensure that Node.js (included in homestead) is installed on your machine.
+Subscriber’s list - View or download (CSV) users who have subscribed their emails for newsletter along with categories. (available to Admin only) + Validation that its not a robot
 
-    node -v
 
-Install dependencies listed in package.json with:
+Category Manager: Manage categories and sub-categories under them (available to Admin only)
+There will be 2 level of category?
+Yes. Simple two level categories. I think you can make it N level too? Pretty simple.
 
-    npm install --save-dev
+Manage articles: (accessible by Writer, Editor and Admin) - add/ edit/ disable.
+Select sub categories (multiple) - checkboxes. (mandatory to select atleast one sub category)
+Alias (for url structure) - all spaces will be changed with “-” - lets limit the url to some standard character limit (no special characters must be allowed)
+Featured photo upload (max 10mb) - to be uploaded to AWS S3 bucket
+Photo source/ credit (text box - non mandatory)
+Title - no limit on number of characters. Let writer decide on his/her own
+Main Article - Editor (will decide on which one to use)
+Tags - textbox to allow multiple keywords separated by comma 
+Summary (enabled by default (checkbox ticked) and mandatory field - user can manually disable(uncheck) and it won’t stay mandatory then)
+Check box (unchecked by default) “Video article” 
+Buttons:
+Save as draft (not published - not visible on website anywhere). 
+	Save and Publish (if copyscrape API is enabled - it will check the percentage pre-defined by admin and save if that’s fulfilled. If not, show error message and ask user to correct the article to be able to save it. 
 
-Retrieve frontend dependencies with Bower, compile SASS, and move frontend files into place:
+SEO Manager (accessible by SEO, Editor and Admin)
+Show list of articles (sort by latest first, and where SEO is not yet done)
+Click on article will open fields for meta tags 
+Show article (in same way as on front end) below the meta tags option. Article only needs to be viewed and not edited from here. 
+Show page views (+1 each time the article is open in front end) 
 
-    gulp
 
-Now that you have the environment configured, you need to create a database configuration for it. For create database tables use this command:
 
-    php artisan migrate
 
-And to initial populate database use this:
+NOTE: I suggest to keep login function for admin(and other admin users) by gmail verification only. This will be much more secure than anything we can develop. So all your users will need to have a gmail id to be able to login to the admin panel.  
 
-    php artisan db:seed
+User will be registered using gmail ID? System will auto detect registered user email id and map with logged in user.
+Only admin can create a user - users can not register on their own. Once user logs in using google - it will check for the gmail id in database and accordingly open the admin panel.
 
-If you install on your localhost in folder laravel5startersite, you can type on web browser:
 
-	http://localhost/laravel5startersite/public
------
-<a name="step5"></a>
-### Step 5: Start Page
 
-You can now login to admin part of Laravel Framework 5  Bootstrap 3 Starter Site:
+Front End: 
+Header: Logo, Search box, Social media icon
+Navigation Menu - News, Gadgets, Reviews, Science, Social, Videos
+Option for a running ticker (new headlines)
 
-    username: admin@admin.com
-    password: admin
-OR user
 
-    username: user@user.com
-    password: user
+News, Gadgets, Reviews, Science, Social, Videos there are category? - YES
+running ticker (new headlines) - how this data will be populated? - basically a marquee based new headline. It will pull out 5 latest headlines and then show them in marquee (right to left) one by one. Check newsonly.tv and you will notice a BLUE hindi based text running from right to left every few seconds (in the header area).
 
------
-<a name="feature5"></a>
-## Troubleshooting
 
-### RuntimeException : No supported encrypter found. The cipher and / or key length are invalid.
 
-    php artisan key:generate
+Horizontal Ad placement 
 
-### Site loading very slow
 
-	composer dump-autoload --optimize
-OR
 
-    php artisan dump-autoload
+Other than home page, we will have Category page and individual article page. Nothing special in them except related articles to be shown (based on similar categories). 
 
------
-<a name="feature6"></a>
-## License
+Another small “Contact us” page, terms of use, privacy policies. 
 
-This is free software distributed under the terms of the MIT license
 
------
-<a name="feature7"></a>
-## Additional information
 
-Inspired by and based on [andrew13's Laravel-4-Bootstrap-Starter-Site](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site)
+There will be CMS page management also? For terms of use, privacy policies etc. No - we will be using the blog pages as CMS as well. Will just create a category/ sub category and use it for CMS pages. 
 
-----
-<a name="feature8"></a>
-##How Starter Site is look like
 
-![Index](http://i57.tinypic.com/2yug28x.jpg)
-![Login](http://i58.tinypic.com/r7p4et.jpg)
-![Register new user](http://i61.tinypic.com/fvcz5x.jpg)
-![Admin dashboard](http://i58.tinypic.com/b9g2g1.jpg)
-![Admin users](http://i60.tinypic.com/301hemp.jpg)
-![Admin list users](http://i58.tinypic.com/2ujl5dh.jpg)
-
-----
-<a name="feature9"></a>
-## Advanced alternatives
-If you are interested in advanced starter sites where you can get 70+ admin pages, 20+ frontend pages with color schemes and a CRUD generator then visit below links
-
-[Josh](http://goo.gl/Mnhunr)
-
-[Chandra](http://goo.gl/hk4ut3)
+Please share frontend UI design. - Not made yet. But take techcrunch.com for example
