@@ -1,0 +1,142 @@
+<?php namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\AdminController;
+use App\User;
+use App\Http\Requests\Admin\UserRequest;
+use Illuminate\Support\Facades\Input;
+use Datatables;
+
+
+class SettingController extends AdminController
+{
+    public function __construct()
+    {
+        view()->share('type', 'setting');
+    }
+
+    /*
+    * Display a listing of the resource.
+    *
+    * @return Response
+    */
+    public function index()
+    {
+        // Show the page
+        return view('admin.setting.index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return view('admin.setting.create_edit');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store(UserRequest $request)
+    {
+
+        $user = new User ($request->except('password','password_confirmation'));
+        $user->password = bcrypt($request->password);
+        $user->confirmation_code = str_random(32);
+
+        $picture = "";
+        if(Input::hasFile('photo'))
+        {
+            $file = Input::file('photo');
+            $filename = $file->getClientOriginalName();
+            $extension = $file -> getClientOriginalExtension();
+            $picture = sha1($filename . time()) . '.' . $extension;
+        }
+        $user->photo = $picture;
+        $user->save();
+
+        if(Input::hasFile('photo'))
+        {
+            $destinationPath = public_path() . '/images/'.$user->id.'/';
+            Input::file('photo')->move($destinationPath, $picture);
+        }
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param $user
+     * @return Response
+     */
+    public function edit(User $user)
+    {
+        return view('admin.setting.create_edit', compact('user'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param $user
+     * @return Response
+     */
+    public function update(UserRequest $request, User $user)
+    {
+        $password = $request->password;
+        $passwordConfirmation = $request->password_confirmation;
+
+        if (!empty($password)) {
+            if ($password === $passwordConfirmation) {
+                $user->password = bcrypt($password);
+            }
+        }
+        $user->update($request->except('password','password_confirmation'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param $user
+     * @return Response
+     */
+
+    public function delete(User $user)
+    {
+        return view('admin.user.delete', compact('user'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param $user
+     * @return Response
+     */
+    public function destroy(User $user)
+    {
+        $user->delete();
+    }
+
+    /**
+     * Show a list of all the languages posts formatted for Datatables.
+     *
+     * @return Datatables JSON
+     */
+    public function data()
+    {
+        $role_list = ['1' => 'Admin', '2' => 'SEO', '3' => 'Editor and SEO', '4' => 'Writer'];
+
+        $users = User::select(array('users.id', 'users.name', 'users.email', 'users.roles', 'users.confirmed', 'users.created_at'));
+
+        //->edit_column('roles', '{{{ $roles }}}')
+        return Datatables::of($users)
+            ->edit_column('confirmed', '@if ($confirmed=="1") <span class="glyphicon glyphicon-ok"></span> @else <span class=\'glyphicon glyphicon-remove\'></span> @endif')
+            ->add_column('actions', '@if ($id!="1")<a href="{{{ url(\'admin/user/\' . $id . \'/edit\' ) }}}" class="btn btn-success btn-sm iframe" ><span class="glyphicon glyphicon-pencil"></span>  {{ trans("admin/modal.edit") }}</a>
+                    <a href="{{{ url(\'admin/user/\' . $id . \'/delete\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("admin/modal.delete") }}</a>
+                @endif')
+            ->remove_column('id')
+            ->make();
+    }
+
+}
