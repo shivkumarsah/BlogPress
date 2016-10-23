@@ -151,6 +151,7 @@ return [
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
 
         Jenssegers\Mongodb\MongodbServiceProvider::class,
+        Jenssegers\Mongodb\Auth\PasswordResetServiceProvider::class,
 
     ],
 

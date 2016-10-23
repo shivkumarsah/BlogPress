@@ -45,6 +45,7 @@ class Admin implements Middleware {
 	 */
 	public function handle($request, Closure $next)
 	{
+        return $next($request);
         if ($this->auth->check())
         {
             $admin = 0;

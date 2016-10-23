@@ -26,6 +26,7 @@ Route::controllers([
 ]);
 
 /***************    Admin routes  **********************************/
+//Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 
     # Admin Dashboard
