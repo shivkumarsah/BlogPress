@@ -72,9 +72,7 @@
                     cache: false,
                     processData: false
                 }).success(function () {
-                    setTimeout(function () {
-                        parent.$.colorbox.close();
-                    }, 10);
+                    window.location.href = '/admin/article';
 
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                     // Optionally alert the user of an error here...

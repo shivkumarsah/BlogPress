@@ -12,8 +12,7 @@ class ArticleCategoryRequest extends FormRequest {
 	public function rules()
 	{
 		return [
-            'title' => 'required|min:3',
-            'language_id' => 'required|integer',
+            '_id' => 'required|min:3'
 		];
 	}
 

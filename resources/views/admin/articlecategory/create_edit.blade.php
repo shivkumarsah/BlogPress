@@ -1,12 +1,11 @@
 @extends('admin.layouts.modal')
 {{-- Content --}}
 @section('content')
-		<!-- Tabs -->
-<ul class="nav nav-tabs">
-	<li class="active"><a href="#tab-general" data-toggle="tab"> {{
-			trans("admin/modal.general") }}</a></li>
-</ul>
-<!-- ./ tabs -->
+<div class="page-header">
+	<h3>
+		{!! trans("admin/articlecategory.articlecategories") !!}
+	</h3>
+</div>
 @if (isset($articlecategory))
 {!! Form::model($articlecategory, array('url' => url('admin/articlecategory') . '/' . $articlecategory->id, 'method' => 'put', 'class' => 'bf', 'files'=> true)) !!}
 @else
@@ -16,19 +15,19 @@
 	<div class="tab-content">
 		<!-- General tab -->
 			<div class="tab-pane active" id="tab-general">
-				<div class="form-group  {{ $errors->has('language_id') ? 'has-error' : '' }}">
-					{!! Form::label('language_id', trans("admin/admin.language"), array('class' => 'control-label')) !!}
+				<div class="form-group  {{ $errors->has('parent') ? 'has-error' : '' }}">
+					{!! Form::label('parent', trans("admin/articlecategory.parent_name"), array('class' => 'control-label')) !!}
 					<div class="controls">
-						{!! Form::select('language_id', $languages, @isset($articlecategory)? $articlecategory->language_id : 'default', array('class' => 'form-control')) !!}
-						<span class="help-block">{{ $errors->first('language_id', ':message') }}</span>
+						{!! Form::select('parent', $categories, @isset($articlecategory)? $articlecategory->parent : 'default', array('class' => 'form-control', 'placeholder' => 'Select parent category...')) !!}
+						<span class="help-block">{{ $errors->first('parent', ':message') }}</span>
 					</div>
 				</div>
 
-				<div class="form-group  {{ $errors->has('title') ? 'has-error' : '' }}">
-					{!! Form::label('title', trans("admin/modal.title"), array('class' => 'control-label')) !!}
+				<div class="form-group  {{ $errors->has('_id') ? 'has-error' : '' }}">
+					{!! Form::label('title', trans("admin/articlecategory.name"), array('class' => 'control-label')) !!}
 					<div class="controls">
-						{!! Form::text('title', null, array('class' => 'form-control')) !!}
-						<span class="help-block">{{ $errors->first('title', ':message') }}</span>
+						{!! Form::text('_id', null, array('class' => 'form-control')) !!}
+						<span class="help-block">{{ $errors->first('_id', ':message') }}</span>
 					</div>
 				</div>
 			</div>

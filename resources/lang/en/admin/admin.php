@@ -18,4 +18,5 @@ return [
     'photo_items' => 'Photo items',
     'users' => 'Users',
     'subscribers' => 'Subscribers',
+    'parent' => 'Parent'
 	];

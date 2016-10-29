@@ -3,7 +3,12 @@
 @section('content')
 <div class="page-header">
     <h3>
-        Add  {!! trans("admin/article.article") !!}
+        @if (isset($article)) 
+            Edit
+        @else 
+            Add
+        @endif
+        {!! trans("admin/article.article") !!}
     </h3>
 </div>
 

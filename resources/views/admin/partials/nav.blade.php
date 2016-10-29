@@ -65,22 +65,9 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-folder-open"></i> Category Management
-                        <span class="fa arrow"></span>
+                    <a href="{{url('admin/articlecategory')}}">
+                        <i class="glyphicon glyphicon-list"></i> Category Management
                     </a>
-                    <ul class="nav collapse">
-                        <li>
-                            <a href="{{url('admin/articlecategory')}}">
-                                <i class="glyphicon glyphicon-list"></i>  Categories
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{url('admin/articlecategory')}}">
-                                <i class="glyphicon glyphicon-plus-sign"></i> Add Category
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li>
                     <a href="{{url('admin/article-seo')}}">

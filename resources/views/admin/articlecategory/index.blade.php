@@ -22,8 +22,8 @@
     <table id="table" class="table table-striped table-hover">
         <thead>
         <tr>
-            <th>{!! trans("admin/modal.title") !!}</th>
-            <th>{!! trans("admin/admin.language") !!}</th>
+            <th>{!! trans("admin/articlecategory.name") !!}</th>
+            <th>{!! trans("admin/articlecategory.parent_name") !!}</th>
             <th>{!! trans("admin/admin.created_at") !!}</th>
             <th>{!! trans("admin/admin.action") !!}</th>
         </tr>
