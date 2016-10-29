@@ -2,10 +2,18 @@
 
 return [
     'article' => 'Article',
-    'introduction' => 'Introduction',
+    'slug' => 'URL',
+    'introduction' => 'Introduction (Short Description)',
     'content' => 'Content',
+    'description' => 'Description',
     'source' => 'Source',
-    'picture' => 'Picture',
+    'picture' => 'Featured photo',
+    'picture_source' => 'Photo source',
     'category' => 'Category',
+	'views' => 'Views',
+	'type' => 'Video Article',
+	'summary' => "Summary",
+	'tags' => 'Tags (Comma seperated)',
+
 
 ];

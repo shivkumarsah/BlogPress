@@ -9,8 +9,9 @@ use Datatables;
 
 class SettingController extends AdminController
 {
-    public function __construct()
+    public function __construct(SettingRequest $request)
     {
+        //dd($request);
         view()->share('type', 'setting');
     }
 

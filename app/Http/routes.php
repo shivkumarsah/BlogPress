@@ -48,13 +48,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     Route::resource('articlecategory', 'Admin\ArticleCategoriesController');
 
     # Articles
+    // Route::get('article/data', 'Admin\ArticleController@data');
+    // Route::get('article/{article}/show', 'Admin\ArticleController@show');
+    // Route::get('article/{article}/edit', 'Admin\ArticleController@edit');
+    // Route::get('article/{article}/delete', 'Admin\ArticleController@delete');
+    // Route::get('article/reorder', 'Admin\ArticleController@getReorder');
+    // Route::resource('article', 'Admin\ArticleController');
+
     Route::get('article/data', 'Admin\ArticleController@data');
     Route::get('article/{article}/show', 'Admin\ArticleController@show');
     Route::get('article/{article}/edit', 'Admin\ArticleController@edit');
     Route::get('article/{article}/delete', 'Admin\ArticleController@delete');
     Route::get('article/reorder', 'Admin\ArticleController@getReorder');
     Route::resource('article', 'Admin\ArticleController');
-
+    
     # Photo Album
     Route::get('photoalbum/data', 'Admin\PhotoAlbumController@data');
     Route::get('photoalbum/{photoalbum}/show', 'Admin\PhotoAlbumController@show');

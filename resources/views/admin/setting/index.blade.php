@@ -12,7 +12,7 @@
         </h3>
     </div>
 
-    <div class="tab-content">`
+    <div class="tab-content">
         {!! Form::open(array('url' => url('admin/setting'), 'method' => 'post', 'class' => 'bf', 'files'=> true)) !!}
         <!-- General tab -->
         <div class="tab-pane active" id="tab-general">

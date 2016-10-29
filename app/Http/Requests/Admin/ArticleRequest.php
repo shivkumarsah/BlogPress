@@ -13,8 +13,8 @@ class ArticleRequest extends FormRequest {
 	{
 		return [
             'title' => 'required|min:3',
-            'language_id' => 'required|integer',
-            'article_category_id' => 'required|integer',
+            'categories' => 'required',
+            'slug' => 'required',
 			'introduction' => 'required|min:20',
             'content' => 'required|min:20',
 		];

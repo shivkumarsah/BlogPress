@@ -10,10 +10,12 @@
             {!! trans("admin/article.article") !!}
             <div class="pull-right">
                 <div class="pull-right">
+                    <!--a href="{!! url('admin/article/create') !!}"
+                       class="btn btn-sm  btn-primary iframe"><span class="glyphicon glyphicon-plus-sign"></span> {{
+					trans("admin/modal.new") }}</a-->
                     <a href="{!! url('admin/article/create') !!}"
-                       class="btn btn-sm  btn-primary iframe"><span
-                                class="glyphicon glyphicon-plus-sign"></span> {{
-					trans("admin/modal.new") }}</a>
+                       class="btn btn-sm  btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> {{
+                    trans("admin/modal.new") }}</a>
                 </div>
             </div>
         </h3>
@@ -24,7 +26,8 @@
         <tr>
             <th>{{ trans("admin/modal.title") }}</th>
             <th>{{ trans("admin/article.category") }}</th>
-            <th>{{ trans("admin/admin.language") }}</th>
+            <th>{{ trans("admin/article.description") }}</th>
+            <th>{{ trans("admin/article.views") }}</th>
             <th>{{ trans("admin/admin.created_at") }}</th>
             <th>{{ trans("admin/admin.action") }}</th>
         </tr>

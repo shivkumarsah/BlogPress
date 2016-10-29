@@ -47,7 +47,7 @@
                     </ul>
                 </li-->
                 <li>
-                    <a href="#">
+                    <a href="javascript:void(0);">
                         <i class="glyphicon glyphicon-tags"></i> Article Management
                         <span class="fa arrow"></span>
                     </a>
@@ -58,7 +58,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{url('admin/article')}}">
+                            <a href="{{url('admin/article/create')}}">
                                 <i class="glyphicon glyphicon-plus-sign"></i> Add Article
                             </a>
                         </li>
@@ -83,7 +83,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{url('admin/article')}}">
+                    <a href="{{url('admin/article-seo')}}">
                         <i class="glyphicon glyphicon-bullhorn"></i> SEO Management
                     </a>
                 </li>

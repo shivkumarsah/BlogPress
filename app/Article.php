@@ -2,75 +2,34 @@
 
 namespace App;
 
-use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+// use Cviebrock\EloquentSluggable\SluggableInterface;
+// use Cviebrock\EloquentSluggable\SluggableTrait;
+// use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Article extends Model implements SluggableInterface {
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-	use SoftDeletes;
-	use SluggableTrait;
+class Article extends Eloquent
+{
 
-	protected $dates = ['deleted_at'];
+	protected $dates = ['deleted_at','created_at'];
 
 	protected $sluggable = [
 		'build_from' => 'title',
 		'save_to'    => 'slug',
 	];
 
-	protected $guarded  = array('id');
+	protected $connection = 'mongodb';
 
-	/**
-	 * Returns a formatted post content entry,
-	 * this ensures that line breaks are returned.
-	 *
-	 * @return string
-	 */
-	public function content()
-	{
-		return nl2br($this->content);
-	}
+    protected $collection = 'articles';
 
-	/**
-	 * Returns a formatted post content entry,
-	 * this ensures that line breaks are returned.
-	 *
-	 * @return string
-	 */
-	public function introduction()
-	{
-		return nl2br($this->introduction);
-	}
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['title', 'introduction','content', 'categories','slug','picture','picture_source','tags','summary','type','status','views'];
 
-	/**
-	 * Get the post's author.
-	 *
-	 * @return User
-	 */
-	public function author()
-	{
-		return $this->belongsTo(User::class, 'user_id');
-	}
-
-	/**
-	 * Get the post's language.
-	 *
-	 * @return Language
-	 */
-	public function language()
-	{
-		return $this->belongsTo(Language::class,'language_id');
-	}
-
-	/**
-	 * Get the post's category.
-	 *
-	 * @return ArticleCategory
-	 */
-	public function category()
-	{
-		return $this->belongsTo(ArticleCategory::class,'article_category_id');
-	}
+	
 
 }

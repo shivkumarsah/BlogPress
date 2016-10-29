@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
 use App\Article;
-use App\ArticleCategory;
-use App\Language;
+//use App\ArticleCategory;
+//use App\Language;
+use App\Category;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests\Admin\ArticleRequest;
 use Illuminate\Support\Facades\Auth;
@@ -35,9 +36,19 @@ class ArticleController extends AdminController {
      */
     public function create()
     {
-        $languages = Language::lists('name', 'id')->toArray();
-        $articlecategories = ArticleCategory::lists('title', 'id')->toArray();
-        return view('admin.article.create_edit', compact('languages', 'articlecategories'));
+        $categories = Category::all();
+        $categoriesArr = array();
+        foreach($categories as $key => $values){
+            if($values->parent) {
+                if(isset($categoriesArr[$values->parent])) {
+                    $categoriesArr[$values->parent][$values->_id] = $values->_id;
+                } else {
+                    $categoriesArr[$values->parent] = [$values->_id=>$values->_id];
+                }
+            }
+        }
+        $categories = $categoriesArr;
+        return view('admin.article.create_edit', compact('categories'));
     }
 
     /**
@@ -47,19 +58,20 @@ class ArticleController extends AdminController {
      */
     public function store(ArticleRequest $request)
     {
-        $article = new Article($request->except('image'));
-        $article -> user_id = Auth::id();
-
+        $article = Article::create($request->except('picture', 'files', 'image'));
+        $article-> user_id = 1; //Auth::id();
         $picture = "";
-        if(Input::hasFile('image'))
-        {
-            $file = Input::file('image');
+        if(Input::hasFile('picture')) {
+            $file = Input::file('picture');
             $filename = $file->getClientOriginalName();
             $extension = $file -> getClientOriginalExtension();
             $picture = sha1($filename . time()) . '.' . $extension;
         }
-        $article -> picture = $picture;
-        $article -> save();
+        $article->picture = $picture;
+        $article->save();
+        dd($article);
+
+
 
         if(Input::hasFile('image'))
         {
@@ -138,7 +150,7 @@ class ArticleController extends AdminController {
      */
     public function data()
     {
-        $articles = Article::with('category','language')
+        /*$articles = Article::with('category','language')
             ->get()
             ->map(function ($article) {
                 return [
@@ -148,13 +160,22 @@ class ArticleController extends AdminController {
                     'language' => isset($article->language)?$article->language->name:"",
                     'created_at' => $article->created_at->format('d.m.Y.'),
                 ];
+            });*/
+        $articles = Article::all(['_id', 'title', 'categories', 'introduction', 'views','created_at']) ->map(function ($article) {
+                return [
+                    'id' => $article->_id,
+                    'title' => $article->title,
+                    'category' => $article->categories,
+                    'introduction' => $article->introduction,
+                    'views' => $article->views,
+                    'created_at' => $article->created_at->format('d-m-Y'),
+                ];
             });
         return Datatables::of($articles)
             ->add_column('actions', '<a href="{{{ url(\'admin/article/\' . $id . \'/edit\' ) }}}" class="btn btn-success btn-sm iframe" ><span class="glyphicon glyphicon-pencil"></span>  {{ trans("admin/modal.edit") }}</a>
                     <a href="{{{ url(\'admin/article/\' . $id . \'/delete\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("admin/modal.delete") }}</a>
                     <input type="hidden" name="row" value="{{$id}}" id="row">')
             ->remove_column('id')
-
             ->make();
     }
 }

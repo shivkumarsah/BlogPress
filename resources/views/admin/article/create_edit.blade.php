@@ -1,33 +1,26 @@
-@extends('admin.layouts.modal')
+@extends('admin.layouts.form')
 {{-- Content --}}
 @section('content')
-        <!-- Tabs -->
-<ul class="nav nav-tabs">
-    <li class="active"><a href="#tab-general" data-toggle="tab"> {{
-			trans("admin/modal.general") }}</a></li>
-</ul>
-<!-- ./ tabs -->
+<div class="page-header">
+    <h3>
+        Add  {!! trans("admin/article.article") !!}
+    </h3>
+</div>
+
+
 @if (isset($article))
 {!! Form::model($article, array('url' => url('admin/article') . '/' . $article->id, 'method' => 'put','id'=>'fupload', 'class' => 'bf', 'files'=> true)) !!}
 @else
 {!! Form::open(array('url' => url('admin/article'), 'method' => 'post', 'class' => 'bf','id'=>'fupload', 'files'=> true)) !!}
 @endif
-        <!-- Tabs Content -->
-<div class="tab-content">
+
     <!-- General tab -->
     <div class="tab-pane active" id="tab-general">
-        <div class="form-group  {{ $errors->has('language_id') ? 'has-error' : '' }}">
-            {!! Form::label('language_id', trans("admin/admin.language"), array('class' => 'control-label')) !!}
+        <div class="form-group  {{ $errors->has('categories') ? 'has-error' : '' }}">
+            {!! Form::label('categories', trans("admin/article.category"), array('class' => 'control-label')) !!}
             <div class="controls">
-                {!! Form::select('language_id', $languages, @isset($article)? $article->language_id : 'default', array('class' => 'form-control')) !!}
-                <span class="help-block">{{ $errors->first('language_id', ':message') }}</span>
-            </div>
-        </div>
-        <div class="form-group  {{ $errors->has('article_category_id') ? 'has-error' : '' }}">
-            {!! Form::label('language_id', trans("admin/article.category"), array('class' => 'control-label')) !!}
-            <div class="controls">
-                {!! Form::select('article_category_id', $articlecategories, @isset($article)? $article->article_category_id : '1', array('class' => 'form-control')) !!}
-                <span class="help-block">{{ $errors->first('article_category_id', ':message') }}</span>
+                {!! Form::select('categories[]', $categories, @isset($article)? $article->categories : 'default', array('class' => 'form-control', 'multiple'=>true, 'size'=>6)) !!}
+                <span class="help-block">{{ $errors->first('categories', ':message') }}</span>
             </div>
         </div>
         <div class="form-group  {{ $errors->has('title') ? 'has-error' : '' }}">
@@ -35,6 +28,26 @@
             <div class="controls">
                 {!! Form::text('title', null, array('class' => 'form-control')) !!}
                 <span class="help-block">{{ $errors->first('title', ':message') }}</span>
+            </div>
+        </div>
+        <div class="form-group  {{ $errors->has('slug') ? 'has-error' : '' }}">
+            {!! Form::label('slug', trans("admin/article.slug"), array('class' => 'control-label')) !!}
+            <div class="controls">
+                {!! Form::text('slug', null, array('class' => 'form-control')) !!}
+                <span class="help-block">{{ $errors->first('slug', ':message') }}</span>
+            </div>
+        </div>
+        <div class="form-group {!! $errors->has('picture') ? 'error' : '' !!} ">
+            {!! Form::label('source', trans("admin/article.picture"), array('class' => 'control-label')) !!}
+            <div class="controls">
+               <input name="picture" type="file" class="uploader" id="image" value="Upload"/>
+            </div>
+        </div>
+        <div class="form-group  {{ $errors->has('picture_source') ? 'has-error' : '' }}">
+            {!! Form::label('picture_source', trans("admin/article.picture_source"), array('class' => 'control-label')) !!}
+            <div class="controls">
+                {!! Form::text('picture_source', null, array('class' => 'form-control')) !!}
+                <span class="help-block">{{ $errors->first('picture_source', ':message') }}</span>
             </div>
         </div>
         <div class="form-group  {{ $errors->has('introduction') ? 'has-error' : '' }}">
@@ -51,50 +64,58 @@
                 <span class="help-block">{{ $errors->first('content', ':message') }}</span>
             </div>
         </div>
-        <div class="form-group  {{ $errors->has('source') ? 'has-error' : '' }}">
-            {!! Form::label('source', trans("admin/article.source"), array('class' => 'control-label')) !!}
+        <div class="form-group  {{ $errors->has('tags') ? 'has-error' : '' }}">
+            {!! Form::label('tags', trans("admin/article.tags"), array('class' => 'control-label')) !!}
             <div class="controls">
-                {!! Form::text('source', null, array('class' => 'form-control')) !!}
-                <span class="help-block">{{ $errors->first('source', ':message') }}</span>
+                {!! Form::text('tags', null, array('class' => 'form-control')) !!}
+                <span class="help-block">{{ $errors->first('tags', ':message') }}</span>
             </div>
         </div>
-        <div
-                class="form-group {!! $errors->has('picture') ? 'error' : '' !!} ">
-            <div class="col-lg-12">
-                {!! Form::label('source', trans("admin/article.picture"), array('class' => 'control-label')) !!}
-                <input name="picture"
-                       type="file" class="uploader" id="image" value="Upload"/>
+        
+        <div class="form-group  {{ $errors->has('summary') ? 'has-error' : '' }}">
+            <div class="controls">
+                {!! Form::label('summary', trans("admin/article.summary"), array('class' => 'control-label')) !!}
+                {!! Form::checkbox('summary', 1) !!}&nbsp;&nbsp;&nbsp;
+                <span class="help-block">{{ $errors->first('summary', ':message') }}</span>
             </div>
+        </div>
+        <div class="form-group  {{ $errors->has('type') ? 'has-error' : '' }}">
+            <div class="controls">
+                {!! Form::label('type', trans("admin/article.type"), array('class' => 'control-label')) !!}
+                {!! Form::checkbox('type', 1) !!}&nbsp;&nbsp;&nbsp;
+                <span class="help-block">{{ $errors->first('type', ':message') }}</span>
+            </div>
+            
+        </div>
 
-        </div>
         <!-- ./ general tab -->
-    </div>
-    <!-- ./ tabs content -->
-</div>
 
-<!-- Form Actions -->
 
-<div class="form-group">
-    <div class="col-md-12">
-        <button type="reset" class="btn btn-sm btn-warning close_popup">
-            <span class="glyphicon glyphicon-ban-circle"></span> {{
-						trans("admin/modal.cancel") }}
-        </button>
-        <button type="reset" class="btn btn-sm btn-default">
-            <span class="glyphicon glyphicon-remove-circle"></span> {{
-						trans("admin/modal.reset") }}
-        </button>
-        <button type="submit" class="btn btn-sm btn-success">
-            <span class="glyphicon glyphicon-ok-circle"></span>
-            @if	(isset($news))
-                {{ trans("admin/modal.edit") }}
-            @else
-                {{trans("admin/modal.create") }}
-            @endif
-        </button>
+        <!-- Form Actions -->
+        <div class="form-group">
+            <div class="col-md-12">
+                <button type="reset" class="btn btn-sm btn-warning close_popup">
+                    <span class="glyphicon glyphicon-ban-circle"></span> {{
+                                trans("admin/modal.cancel") }}
+                </button>
+                <button type="reset" class="btn btn-sm btn-default">
+                    <span class="glyphicon glyphicon-remove-circle"></span> {{
+                                trans("admin/modal.reset") }}
+                </button>
+                <button type="submit" class="btn btn-sm btn-success">
+                    <span class="glyphicon glyphicon-ok-circle"></span>
+                    @if (isset($news))
+                        {{ trans("admin/modal.edit") }}
+                    @else
+                        {{trans("admin/modal.create") }}
+                    @endif
+                </button>
+            </div>
+        </div>
+        <!-- ./ form actions -->
     </div>
-</div>
-<!-- ./ form actions -->
+
+    
 
 </form>
 @endsection

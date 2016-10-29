@@ -13,47 +13,48 @@
     </div>
 
     <div class="tab-content">
+        {!! Form::open(array('url' => url('admin/ads'), 'method' => 'post', 'class' => 'bf', 'files'=> true)) !!}
         <!-- General tab -->
         <div class="tab-pane active" id="tab-general">
             <div class="form-group  {{ $errors->has('home') ? 'has-error' : '' }}">
                 {!! Form::label('home', trans("admin/setting.home"), array('class' => 'control-label')) !!}
                 <div class="controls">
-                    {!! Form::textarea('home', null, array('class' => 'form-control','rows'=>'2')) !!}
+                    {!! Form::textarea('home', $setting['home_page'], array('class' => 'form-control','rows'=>'2')) !!}
                     <span class="help-block">{{ $errors->first('home', ':message') }}</span>
                 </div>
             </div>
             <div class="form-group  {{ $errors->has('category') ? 'has-error' : '' }}">
                 {!! Form::label('category', trans("admin/setting.category"), array('class' => 'control-label')) !!}
                 <div class="controls">
-                    {!! Form::text('category', null, array('class' => 'form-control','rows'=>'2')) !!}
+                    {!! Form::textarea('category', $setting['listing_page'], array('class' => 'form-control','rows'=>'2')) !!}
                     <span class="help-block">{{ $errors->first('category', ':message') }}</span>
                 </div>
             </div>
             <div class="form-group  {{ $errors->has('article') ? 'has-error' : '' }}">
                 {!! Form::label('article', trans("admin/setting.article"), array('class' => 'control-label')) !!}
                 <div class="controls">
-                    {!! Form::textarea('article', null, array('class' => 'form-control','rows'=>'2')) !!}
+                    {!! Form::textarea('article', $setting['detail_page'], array('class' => 'form-control','rows'=>'2')) !!}
                     <span class="help-block">{{ $errors->first('article', ':message') }}</span>
                 </div>
             </div>
             <div class="form-group  {{ $errors->has('common_header') ? 'has-error' : '' }}">
                 {!! Form::label('common_header', trans("admin/setting.common_header"), array('class' => 'control-label')) !!}
                 <div class="controls">
-                    {!! Form::textarea('common_header', null, array('class' => 'form-control','rows'=>'2')) !!}
+                    {!! Form::textarea('common_header', $setting['common_header'], array('class' => 'form-control','rows'=>'2')) !!}
                     <span class="help-block">{{ $errors->first('common_header', ':message') }}</span>
                 </div>
             </div>
             <div class="form-group  {{ $errors->has('common_footer') ? 'has-error' : '' }}">
                 {!! Form::label('common_footer', trans("admin/setting.common_footer"), array('class' => 'control-label')) !!}
                 <div class="controls">
-                    {!! Form::textarea('common_footer', null, array('class' => 'form-control','rows'=>'2')) !!}
+                    {!! Form::textarea('common_footer', $setting['common_footer'], array('class' => 'form-control','rows'=>'2')) !!}
                     <span class="help-block">{{ $errors->first('common_footer', ':message') }}</span>
                 </div>
             </div>
             <div class="form-group  {{ $errors->has('common_sidebar') ? 'has-error' : '' }}">
                 {!! Form::label('common_sidebar', trans("admin/setting.common_sidebar"), array('class' => 'control-label')) !!}
                 <div class="controls">
-                    {!! Form::textarea('common_sidebar', null, array('class' => 'form-control','rows'=>'2')) !!}
+                    {!! Form::textarea('common_sidebar', $setting['common_sidebar'], array('class' => 'form-control','rows'=>'2')) !!}
                     <span class="help-block">{{ $errors->first('common_sidebar', ':message') }}</span>
                 </div>
             </div>

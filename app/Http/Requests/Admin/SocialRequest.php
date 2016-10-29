@@ -1,9 +1,9 @@
 <?php namespace App\Http\Requests\Admin;
 
-use App\Setting;
+use App\Social;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SettingRequest extends FormRequest {
+class SocialRequest extends FormRequest {
 
 	/**
 	 * Get the validation rules that apply to the request.
@@ -12,7 +12,6 @@ class SettingRequest extends FormRequest {
 	 */
 	public function rules()
 	{
-		//dd($this->segment(2));
 		if($this->segment(3)!="") {
 			$user = Setting::find($this->segment(3));
 		}
@@ -27,22 +26,24 @@ class SettingRequest extends FormRequest {
 			case 'POST':
 			{
 				return [
-					'copyscrap_api' => 'required',
-					'copyscrap_check' => 'required',
-					'content_req_length' => 'required',
-					'google_analytics' => 'required',
-					'google_webmasters' => 'required',
+					'facebook' => 'required',
+					'linkedin' => 'required',
+					'gplus' => 'required',
+					'twitter' => 'required',
+					'instagram' => 'required',
+					'youtube' =>  'required',
 				];
 			}
 			case 'PUT':
 			case 'PATCH':
 			{
 				return [
-					'copyscrap_api' => 'required',
-					'copyscrap_check' => 'required',
-					'content_req_length' => 'required',
-					'google_analytics' => 'required',
-					'google_webmasters' => 'required',
+					'facebook' => 'required',
+					'linkedin' => 'required',
+					'gplus' => 'required',
+					'twitter' => 'required',
+					'instagram' => 'required',
+					'youtube' =>  'required',
 					//'name' => 'required|min:3',
 					//'email' => 'required|email|unique:users,email,'.$user->id,
 				];
