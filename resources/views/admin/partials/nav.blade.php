@@ -47,8 +47,8 @@
                     </ul>
                 </li-->
                 <li>
-                    <a href="javascript:void(0);">
-                        <i class="glyphicon glyphicon-tags"></i> Article Management
+                    <a href="#">
+                        <i class="glyphicon glyphicon-th-large"></i> Article Management
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav collapse">
@@ -66,7 +66,7 @@
                 </li>
                 <li>
                     <a href="{{url('admin/articlecategory')}}">
-                        <i class="glyphicon glyphicon-list"></i> Category Management
+                        <i class="glyphicon glyphicon-tags"></i> Category Management
                     </a>
                 </li>
                 <li>

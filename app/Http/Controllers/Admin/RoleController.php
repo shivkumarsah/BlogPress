@@ -8,8 +8,6 @@ use Datatables;
 
 class RoleController extends AdminController
 {
-
-
     public function __construct()
     {
         view()->share('type', 'role');
@@ -43,10 +41,8 @@ class RoleController extends AdminController
      */
     public function store(RoleRequest $request)
     {
-
-        $role = new Role ($request->except('password','password_confirmation'));
-        //$role->password = bcrypt($request->password);
-        //$role->confirmation_code = str_random(32);
+        $role = Role::create ($request->except('_token'));
+        $role->status = (int) $request->only('role');
         $role->save();
     }
 
@@ -78,7 +74,7 @@ class RoleController extends AdminController
                 $role->password = bcrypt($password);
             }
         }*/
-        $role->update($request->except('password','password_confirmation'));
+        $role->update($request->except('_token'));
     }
 
     /**
@@ -111,10 +107,17 @@ class RoleController extends AdminController
      */
     public function data()
     {
-
-        $roles = Role::select(array('roles.id', 'roles.name', 'roles.created_at'));
+        $roles = Role::all(['_id', 'name', 'created_at', 'status'])->map(function ($roles) {
+                return [
+                    'id' => $roles->_id,
+                    'name' => $roles->name,
+                    //'created_at' => $roles->created_at->format('d-m-Y'),
+                    'status' => $roles->status
+                ];
+            });
 
         return Datatables::of($roles)
+            ->edit_column('status', '@if ($status=="1") <span class="glyphicon glyphicon-ok"></span> @else <span class=\'glyphicon glyphicon-remove\'></span> @endif')
             ->add_column('actions', '@if ($id!="1")<a href="{{{ url(\'admin/role/\' . $id . \'/edit\' ) }}}" class="btn btn-success btn-sm iframe" ><span class="glyphicon glyphicon-pencil"></span>  {{ trans("admin/modal.edit") }}</a>
                     <a href="{{{ url(\'admin/role/\' . $id . \'/delete\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("admin/modal.delete") }}</a>
                 @endif')

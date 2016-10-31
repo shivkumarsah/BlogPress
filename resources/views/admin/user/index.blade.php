@@ -26,7 +26,7 @@
             <th>{!! trans("admin/users.name") !!}</th>
             <th>{!! trans("admin/users.email") !!}</th>
             <th>{!! trans("admin/users.roles") !!}</th>
-            <th>{!! trans("admin/users.active_user") !!}</th>
+            <!-- <th>{!! trans("admin/users.active_user") !!}</th> -->
             <th>{!! trans("admin/admin.created_at") !!}</th>
             <th>{!! trans("admin/admin.action") !!}</th>
         </tr>

@@ -23,13 +23,13 @@
                     <span class="help-block">{{ $errors->first('copyscrap_api', ':message') }}</span>
                 </div>
             </div>
-            <div class="form-group  {{ $errors->has('copyscrap_check') ? 'has-error' : '' }}">
-                {!! Form::label('copyscrap_check', trans("admin/setting.copyscrap_check"), array('class' => 'control-label')) !!}
-                <div class="controls">
-                    {!! Form::text('copyscrap_check', $setting['copyscrap_check'], array('class' => 'form-control')) !!}
-                    <span class="help-block">{{ $errors->first('copyscrap_check', ':message') }}</span>
-                </div>
-            </div>
+            <div class="form-group  {{ $errors->has('parent') ? 'has-error' : '' }}">
+				{!! Form::label('copyscrap_check', trans("admin/setting.copyscrap_check"), array('class' => 'control-label')) !!}
+				<div class="controls">
+					{!! Form::select('copyscrap_check', array('1'=>"Yes",'0'=>"No"), 1, array('class' => 'form-control')) !!}
+					<span class="help-block">{{ $errors->first('parent', ':message') }}</span>
+				</div>
+			</div>
             <div class="form-group  {{ $errors->has('content_req_length') ? 'has-error' : '' }}">
                 {!! Form::label('content_req_length', trans("admin/setting.content_req_length_percentage"), array('class' => 'control-label')) !!}
                 <div class="controls">

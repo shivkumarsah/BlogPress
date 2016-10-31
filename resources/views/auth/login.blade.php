@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 {{-- Web site Title --}}
 @section('title') {!!  trans('site/user.login') !!} :: @parent @endsection

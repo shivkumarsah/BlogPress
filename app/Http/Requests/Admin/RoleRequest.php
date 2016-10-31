@@ -13,7 +13,7 @@ class RoleRequest extends FormRequest {
 	public function rules()
 	{
 		if($this->segment(3)!="") {
-			$user = Role::find($this->segment(3));
+			$role = Role::find($this->segment(3));
 		}
 
 		switch($this->method())
@@ -26,14 +26,16 @@ class RoleRequest extends FormRequest {
 			case 'POST':
 			{
 				return [
-					'name' => 'required|min:3'
+					'name' => 'required|min:3',
+					'status'=>'integer'
 				];
 			}
 			case 'PUT':
 			case 'PATCH':
 			{
 				return [
-					'name' => 'required|min:3'
+					'name' => 'required|min:3',
+					'status'=>'integer'
 				];
 			}
 			default:break;

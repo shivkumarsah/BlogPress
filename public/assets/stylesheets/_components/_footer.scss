@@ -1,0 +1,46 @@
+/*****************************************************
+
+FOOTER SECTION
+
+*****************************************************/
+footer{background:#0f0f0f;background-size: cover;padding: 60px 0 0;width: 100%; border-top:solid 4px #72ae12; position:relative; z-index:1; box-shadow:0 2px 2px rgba(255, 255, 255, 0.5);
+
+	.footer-widget {
+		.line-dec{background-color: #72ae12;height: 1px;margin: 25px 0;width: 44px;}
+		p {color: #d6d6d6;}
+		.input-group{margin-top:20px;
+					.form-control{@include border-radius(18px 0 0 18px); box-shadow:none; height:37px; background:#f9f9f9; border-color:#d6d6d6;}
+					.input-group-btn{
+						.btn-default{@include border-radius(0 18px 18px 0); @include transition(0.2s); color:#fff; border:0; height:37px; background:#03a8fd; &:hover{background:#72ae12;}}
+					}
+				}
+		.educa-info .text-button {margin-top: 15px;}
+		h2 {color: #ffffff;font-size: 18px;letter-spacing: 0.5px;margin-bottom: 0;margin-top: 5px;text-transform: capitalize;font-family: $squ721rm;}
+		.featured-links ul {margin-left: 15px; float:left; width:100%;
+			li {margin-bottom: 10px;margin-top: 2px;position:relative;
+				&:before{position:absolute; left:-12px; top:7px; height:7px; width:7px; background:none; border:solid 1px #72ae12; content:""; border-radius:100%;}
+				a {color: #d6d6d6;font-size: 14px;text-decoration:none; &:hover {color: #72ae12;}}
+			}
+		}
+		
+	}
+	.text-button a {color: #a8a8a8;font-size: 10px;letter-spacing: 0.5px;text-transform: uppercase;text-decoration:none;
+		&:hover {color: #72ae12;transition: all 0.5s ease 0s;}
+	}
+	
+	
+	
+	.copyright-menu {border-top: 1px solid #2c3437;margin-top: 60px;
+		.copyright-text {margin-top: 30px;
+			p {color: #b8b8b8;font-size: 11px;letter-spacing: 0.5px;padding-bottom: 15px;text-transform: uppercase;}
+		}
+		.social_icons{ margin-top:23px;
+			li{
+				a{height:30px; width:30px; padding-top:5px;}
+			}
+		}
+	}
+	
+
+}
+

@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+/*
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -15,12 +15,28 @@ class Role extends Model implements AuthenticatableContract,
                                     CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword;
+*/
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+
+class Role extends Eloquent
+{
+    protected $dates = ['deleted_at','created_at'];
+
+    protected $connection = 'mongodb';
+
+    protected $collection = 'roles';
 
     protected $guarded  = array('id');
+    
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
     protected $hidden = [];
+
+    // public function users()
+    // {
+    //     return $this->belongsTo(Users::class, 'roles');
+    // }
 }

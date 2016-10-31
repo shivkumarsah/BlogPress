@@ -29,7 +29,7 @@ class SettingRequest extends FormRequest {
 				return [
 					'copyscrap_api' => 'required',
 					'copyscrap_check' => 'required',
-					'content_req_length' => 'required',
+					'content_req_length' => 'required|integer',
 					'google_analytics' => 'required',
 					'google_webmasters' => 'required',
 				];
@@ -40,7 +40,7 @@ class SettingRequest extends FormRequest {
 				return [
 					'copyscrap_api' => 'required',
 					'copyscrap_check' => 'required',
-					'content_req_length' => 'required',
+					'content_req_length' => 'required|integer',
 					'google_analytics' => 'required',
 					'google_webmasters' => 'required',
 					//'name' => 'required|min:3',

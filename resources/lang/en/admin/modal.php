@@ -10,5 +10,8 @@ return [
     'new' => 'New',
     'delete' => 'Delete',
     'items' => 'Items',
+    'status' => 'Status',
+    'active' => 'Active',
+    'deactive' => 'Deactive',
     'delete_message' => 'Did you want to delete this item?',
 ];

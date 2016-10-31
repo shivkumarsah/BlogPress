@@ -34,7 +34,6 @@ class AdsController extends AdminController
     public function store(AdsRequest $request)
     {
         dd($request);
-        dd($input);
 
         $user = Ads::first();
         $input = $request->all();

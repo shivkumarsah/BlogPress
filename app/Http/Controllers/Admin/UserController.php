@@ -127,15 +127,33 @@ class UserController extends AdminController
     {
         $role_list = ['1' => 'Admin', '2' => 'SEO', '3' => 'Editor and SEO', '4' => 'Writer'];
 
-        $users = User::select(array('users.id', 'users.name', 'users.email', 'users.roles', 'users.confirmed', 'users.created_at'));
+        $users = User::all(['_id', 'name', 'email', 'roles', 'phone', 'created_at', 'status'])->map(function ($users) {
+                return [
+                    'id' => $users->_id,
+                    'name' => $users->name,
+                    'email' => $users->email,
+                    'roles' => $users->roles,
+                    //'phone' => $users->phone,
+                    'created_at' => $users->created_at->format('d-m-Y'),
+                    'status' => $users->status
+                ];
+            });
+
+        //dd($users);
 
         //->edit_column('roles', '{{{ $roles }}}')
         return Datatables::of($users)
-            ->edit_column('confirmed', '@if ($confirmed=="1") <span class="glyphicon glyphicon-ok"></span> @else <span class=\'glyphicon glyphicon-remove\'></span> @endif')
+            // ->edit_column('confirmed', '@if ($confirmed=="1") <span class="glyphicon glyphicon-ok"></span> @else <span class=\'glyphicon glyphicon-remove\'></span> @endif')
             ->add_column('actions', '@if ($id!="1")<a href="{{{ url(\'admin/user/\' . $id . \'/edit\' ) }}}" class="btn btn-success btn-sm iframe" ><span class="glyphicon glyphicon-pencil"></span>  {{ trans("admin/modal.edit") }}</a>
                     <a href="{{{ url(\'admin/user/\' . $id . \'/delete\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("admin/modal.delete") }}</a>
+                    @if ($status=="1")
+                    <a href="{{{ url(\'admin/user/\' . $id . \'/delete\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-refresh"></span> {{ trans("admin/modal.deactive") }}</a>
+                    @else
+                    <a href="{{{ url(\'admin/user/\' . $id . \'/delete\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-refresh"></span> {{ trans("admin/modal.active") }}</a>
+                    @endif
                 @endif')
             ->remove_column('id')
+            ->remove_column('status')
             ->make();
     }
 

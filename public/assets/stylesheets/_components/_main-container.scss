@@ -1,0 +1,143 @@
+.main-container{
+	padding:50px 0;
+	overflow:hidden;
+	
+	.banner-sec{
+		padding:0 0 30px; margin-bottom:30px; border-bottom:solid 1px #ccc;
+		.pl0{padding-left:0;}
+		.l-article{display:block; position:relative;			
+			.l-a-text{
+				position:absolute; left:0; bottom:0; width:100%; height:auto; z-index:1; background:rgba(0, 0, 0, 0.7); padding:15px; border-top:solid 4px rgba(0, 0, 0, 0.7);
+				h3{margin:0; padding:0; text-transform:capitalize; font-size:16px; font-family:$squ721rm; font-weight:bold; color:#fff; a{@include transition(0.2s); color:#fff; text-decoration:none; &:hover{color:#e1fcb6;}}}
+				a{}
+			}
+			img.img-responsive{position:relative; z-index:0;}
+		}
+		.right-box{
+			.featured-s{width:100%; float:left;
+				li{width:100%; float:left; margin:0 0 18px;
+					a{
+						width:100%; float:left; padding:6px; text-decoration:none; border-left:5px solid #f1f1f1;
+						.icon-img{width:80px; float:left; margin:0 15px 0 0;}
+						h3{margin:5px 0 0; padding:0; font-size:16px; font-family:$squ721rm; font-weight:bold; color:#222935; overflow:hidden;
+							small{font-size:12px; color:#929292; display:block; padding-top:8px; font-family:$open-sans-regular;}	
+						}
+						&:hover{background:#f1f1f1;}
+					}
+				}
+			}
+		}
+	}
+
+	.latest-news{position:relative;
+		&.mt50{margin-top:50px;}
+		.ln-boxes{position:relative; z-index:1; margin-bottom:50px;
+			.ln-left{color:#0498e4; text-align:center; font-family:$open-sans-bold; padding:5px 0; text-align:center; background:#f5f5f5; border:solid 1px #ccc; color:#666;  @include border-radius(0);}
+			
+			.ln-subC{margin-top:10px; a{@include transition(0.2s); font-size:14px; color:#666; text-decoration:none; display:block; text-align:center; &:hover{color:#72ae12;}}}
+			.ln-pr40{padding-left:20px;
+				.ln-right{
+					h3{color:#fff; font-family:$squ721rm; font-weight:bold; font-size:20px; line-height:25px; position:relative; @include transition(0.2s);
+						a{color:#000; text-decoration:none; display:block; @include transition(0.2s);
+							small{font-family:$open-sans-bold; font-style:italic; font-size:16px; color:#888; display:block; padding-top:8px; span{color:#72ae12;}}
+							&:hover{color:#03a8fd; small{span{color:#03a8fd;}}}
+						}
+					}
+					p{
+						a{color:#03a8fd; font-family:$open-sans-bold; text-decoration:none; &:hover{color:#72ae12;}}
+					}
+					.social_icons{float:none;;
+						li a{height:30px; width:30px; padding-top:5px;}
+					}
+					.ln-art{padding:15px 0;}
+				}
+			}
+			&:before{position:absolute; left:157px; top:0; height:20px; width:20px; background:#f9f9f9; border:solid 2px #ccc; content:''; @include border-radius(100%);}
+		}
+		&:after{position:absolute; left:150px; top:0; height:100%; width:4px; background:#ccc; content:'';}		
+	}
+	
+	.right-container{
+		.banner-heading{
+			padding:20px 0;
+			position:relative;
+			margin:29px 0;
+			text-align:center;
+			background:#03a8fd;
+			border:solid 4px #0498e4;
+			color:#fff; 
+			text-transform:uppercase;
+			font-family:$open-sans-bold;
+			font-size:16px;
+			.white-btn{display:inline-block; text-transform:capitalize; font-size:16px; font-family:$open-sans-regular; margin-top:10px;}			
+		}	
+		
+	}
+	
+	
+	
+	.video-carousel{position:relative;
+		h2.b-g-heading{margin:0;}
+		.owl-pagination{display:none;}
+		.owl-buttons{
+			div{
+				position:absolute; right:0; top:-45px;
+				&.owl-prev{right:50px;}
+				&.owl-next{}
+			}
+		}
+		#video-carousel{background:#f0f0f0;
+			.item{@include transition(0.2s);
+				display: block; padding:15px; text-decoration:none;
+				span.img-sec{position:relative; text-align:center; display:block;
+					img.img-responsive{position:relative; z-index:0;}
+					span.icon{
+						position:absolute; left:0; top:0; right:0; bottom:0; margin:auto; z-index:1; height:50px; width:50px;
+						.svg{height:50px; @include transition(0.2s); width:50px; path{fill:#fff;}}
+					}
+				}
+				h2{margin:0; padding:11px 0px 0; font-size:16px; font-family:$open-sans-bold; color:#777; border-top:solid 4px transparent; @include transition(0.2s);}
+				&:hover{background:#f9f9f9; h2{color:#03a8fd; border-color:#ccc;}
+					span.img-sec{span.icon{.svg{path{fill:#72ae12; @include transition(0.2s);}}}}
+				}
+			}
+		}
+		
+	}	
+
+		.all-video{			
+			.video-box{display:block; position:relative; margin-bottom:30px;
+				a{@include transition(0.2s); color:#fff; text-decoration:none; 
+					img.img-responsive{position:relative; z-index:0;}
+					.l-a-text{position:absolute; left:0; bottom:0; widows:100%; height:auto; z-index:1; background:rgba(0, 0, 0, 0.8); padding:7px 10px; border-top:solid 4px rgba(0, 0, 0, 0.7);
+					h3{margin:0; padding:0; text-transform:capitalize; font-size:16px; line-height:22px; font-family:$squ721rm; color:#fff; &:hover{color:#e1fcb6;}}
+					}
+				}
+			}
+		}
+
+	.article-detail{
+		.art-img{text-align:center;margin-bottom:10px; img{display:inline-block; border-bottom:solid 5px #72ae12;} p{color:#777; font-size:13px; margin:0; padding:15px 0;}}
+		.art-content{
+			p{font-family:$open-sans-regular; font-size:16px; color:#666; line-height:22px; margin-bottom:20px; a{text-decoration:none; @include transition(0.2s); color:#03a8fd; font-family:$open-sans-bold; &:hover{color:#72ae12;}}}
+			.news-sub{float:right; width:320px; margin:0 0 15px 15px; padding:10px; background:#eee; border-color:#ccc; @include border-radius(8px);
+				h2.b-g-heading{background:#222; color:#fff; font-family:$open-sans-bold; padding:12px; font-size:20px; border:0; @include border-radius(8px 8px 0 0); small{color:#fff; font-size:20px;}}
+				ul.featured-s{padding:0 12px 0;
+					li{border-color:#ccc; padding:10px 0;
+						a{h3{color:#333; font-family:$open-sans-regular; display:block; line-height:18px;  &:hover{color:#03a8fd;}}}
+					}
+				}
+			}
+		}
+	}
+	.recommended{padding:15px 0;
+		a{text-decoration:none; padding:15px 0; border-bottom:solid 2px transparent; @include transition(0.2s); display:block;
+			h2{color:#333; margin:15px 0 0; font-family:$open-sans-bold; font-size:16px;}
+			&:hover{border-color:#cbf38c; h2{color:#72ae12;}}
+		}
+	}
+	
+	.add-width-02{width:26.4%;}
+	.add-width-01{width:15.2%;}
+
+}
